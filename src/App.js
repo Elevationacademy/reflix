@@ -39,6 +39,7 @@ class App extends Component {
           <div className="nav">
             <Link to="/">Home</Link>
             <Link to="/catalog">Catalog</Link>
+            <span className="logo">REFLIX</span>
           </div>
           <Route path="/" exact component={Landing} />
           <Route path="/catalog" exact render={() => <Catalog searchInput={this.state.searchInput} handleInput={this.handleInput} movies={this.state.movies} toggleFavorite={this.toggleFavorite} />} />

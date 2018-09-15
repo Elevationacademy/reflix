@@ -7,8 +7,12 @@ class Catalog extends Component {
     constructor(){
         super()
         this.state = {
-            budget: 10
+            budget: JSON.parse(localStorage["budget"] || 10) 
         }
+    }
+
+    componentWillUnmount(){
+        localStorage["budget"] = JSON.stringify(this.state.budget)
     }
 
     getMovieDisplay = (movie, favorite = false) => {
@@ -25,7 +29,7 @@ class Catalog extends Component {
 
     updateBudget = (amount) =>{
         this.setState({...this.state, 
-        budget: this.state.budget += amount})
+        budget: this.state.budget + amount})
     }
 
     getDisplayMovies = () => {

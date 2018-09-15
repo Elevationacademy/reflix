@@ -6,6 +6,7 @@ body{
     background-color: #141414;
     margin: 10px;
 }
+
 .nav{
     margin-bottom: 10px;
 }
@@ -19,6 +20,15 @@ body{
 
 .nav>a:hover{
     color: #f1c40f
+}
+
+.nav>.logo{
+    float: right;
+     color: #61dbfb; /* Must be slightly transparent for effect to work */
+    font: bold 14px/14px 'Sigmar One', sans-serif;
+    margin-left: 5px;
+    text-align: center;
+    text-shadow: 0 3px 7px #000, 0 0 0 #000;
 }
 
 hr{
