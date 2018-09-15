@@ -4,30 +4,32 @@ import Movie from './Movie';
 
 class Catalog extends Component {
 
-    constructor(){
+    constructor() {
         super()
         this.state = {
-            budget: JSON.parse(localStorage["budget"] || 10) 
+            budget: JSON.parse(localStorage["budget"] || 10)
         }
     }
 
     componentWillUnmount = () => localStorage["budget"] = JSON.stringify(this.state.budget)
 
-    getMovieDisplay = (movie, favorite = false) => {
+    getMovieDisplay = (movie, rented = false) => {
         return (
             <Movie
                 movie={movie}
                 key={movie.id}
-                favorite={favorite}
-                toggleFavorite={this.props.toggleFavorite}
+                rented={rented}
+                toggleRented={this.props.toggleRented}
                 updateBudget={this.updateBudget}
                 budget={this.state.budget}
             />)
     }
 
-    updateBudget = (amount) =>{
-        this.setState({...this.state, 
-        budget: this.state.budget + amount})
+    updateBudget = (amount) => {
+        this.setState({
+            ...this.state,
+            budget: this.state.budget + amount
+        })
     }
 
     getDisplayMovies = () => {
@@ -39,12 +41,12 @@ class Catalog extends Component {
         return movies
     }
 
-    getFavoritesSection() {
+    getRentedSection() {
         return (
             <div>
-                <p>Favorites:</p>
-                <div className="display favorites">
-                    {this.getDisplayMovies().filter(m => { return m.isFavorite })
+                <p>Rented:</p>
+                <div className="display rented">
+                    {this.getDisplayMovies().filter(m => { return m.isRented })
                         .map(m => { return this.getMovieDisplay(m, true) })}
                 </div>
                 <hr />
@@ -52,7 +54,7 @@ class Catalog extends Component {
         )
     }
 
-    hasFavorite = () => this.props.movies.some(m => { return m.isFavorite })
+    hasRented = () => this.props.movies.some(m => { return m.isRented })
 
     handleInput = (e) => this.props.handleInput(e.target.value)
 
@@ -62,7 +64,7 @@ class Catalog extends Component {
                 <input value={this.props.searchInput} onChange={this.handleInput} className="search" type="text" placeholder="Search" />
                 <span>Budget: ${this.state.budget}.00</span>
                 <div className="movies">
-                    {this.hasFavorite() ? this.getFavoritesSection() : <div></div>}
+                    {this.hasRented() ? this.getRentedSection() : null}
                     <p>Catalog:</p>
                     <div className="display all">
                         {this.getDisplayMovies().map(m => { return this.getMovieDisplay(m) })}
