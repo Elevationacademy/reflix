@@ -1,0 +1,31 @@
+.movie-detail{
+    display: grid;
+    grid-template-areas: 
+    "t"
+    "i"
+    "d";
+    padding: 50px;
+    padding-top: 0;
+    color: #ecf0f1;
+}
+
+.movie-detail>h1{
+    grid-area: t;
+    justify-self: center;
+}
+
+.movie-detail>h1>span{
+    font-size: 0.8em;
+}
+
+.movie-detail>img{
+    grid-area: i;
+    max-height: 300px;
+    justify-self: center;
+    box-shadow: 1px 1px 3px #ecf0f1;
+    border-radius: 5px;
+}
+
+.movie-detail>p{
+    grid-area: d;
+}

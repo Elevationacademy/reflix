@@ -1,0 +1,27 @@
+*{
+    font-family: 'Patrick Hand', cursive;
+}
+
+body{
+    background-color: #141414;
+    margin: 10px;
+}
+.nav{
+    margin-bottom: 10px;
+}
+
+.nav>a{
+    margin-right: 10px;
+
+    text-decoration: none;
+    color: #ecf0f1
+}
+
+.nav>a:hover{
+    color: #f1c40f
+}
+
+hr{
+    margin-left: 0;
+    width: 20%;
+}
