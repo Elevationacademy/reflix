@@ -32,6 +32,8 @@ class App extends Component {
     this.setState({...this.state, searchInput: value})
   }
 
+  componentWillMount = () => localStorage.removeItem("budget")
+
   render() {
     return (
       <Router>

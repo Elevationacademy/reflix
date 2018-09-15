@@ -11,9 +11,7 @@ class Catalog extends Component {
         }
     }
 
-    componentWillUnmount(){
-        localStorage["budget"] = JSON.stringify(this.state.budget)
-    }
+    componentWillUnmount = () => localStorage["budget"] = JSON.stringify(this.state.budget)
 
     getMovieDisplay = (movie, favorite = false) => {
         return (
