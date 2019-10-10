@@ -5,7 +5,7 @@ class MovieDetail extends Component {
 
     render() {
         let movieID = this.props.match.params.movieID
-        let movie = this.props.movies.find(m => { return m.id == movieID })
+        let movie = this.props.movies.find(m => { return m.id ==  movieID })
 
         return (
             <div>

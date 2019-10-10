@@ -16,7 +16,8 @@ class Landing extends Component {
             <Link className="user"
                 style={{ backgroundColor: user.color }}
                 key={user.name}
-                to={"catalog"}>
+                to="catalog">
+                
                 {user.name}
             </Link>
         )

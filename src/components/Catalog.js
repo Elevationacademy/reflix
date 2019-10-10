@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import "../css/catalog.css"
 import Movie from './Movie';
 
+const AllMovies = function (props) {
+    return (
+        <div>
+            <p>Catalog:</p>
+            <div className="display all">
+                {props.movies.map(m => props.getMovieDisplay(m))}
+            </div>
+        </div>
+    )
+}
 class Catalog extends Component {
 
     constructor() {
@@ -35,10 +45,10 @@ class Catalog extends Component {
     getDisplayMovies = () => {
         let movies = this.props.movies
         let searchInput = this.props.searchInput.toLowerCase()
-        if (searchInput) {
-            movies = movies.filter(m => { return m.title.toLowerCase().includes(this.props.searchInput) })
-        }
-        return movies
+
+        return searchInput ?
+            movies.filter(m => m.title.toLowerCase().includes(this.props.searchInput)) :
+            movies
     }
 
     getRentedSection() {
@@ -46,30 +56,29 @@ class Catalog extends Component {
             <div>
                 <p>Rented:</p>
                 <div className="display rented">
-                    {this.getDisplayMovies().filter(m => { return m.isRented })
-                        .map(m => { return this.getMovieDisplay(m, true) })}
+                    {this.getDisplayMovies().filter(m => m.isRented)
+                        .map(m => this.getMovieDisplay(m, true))}
                 </div>
                 <hr />
             </div>
         )
     }
 
-    hasRented = () => this.props.movies.some(m => { return m.isRented })
+    hasRented = () => this.props.movies.some(m => m.isRented)
 
     handleInput = (e) => this.props.handleInput(e.target.value)
 
     render() {
         return (
             <div className="catalog">
-                <input value={this.props.searchInput} onChange={this.handleInput} className="search" type="text" placeholder="Search" />
+                <input value={this.props.searchInput} onChange={this.handleInput} className="search" placeholder="Search" />
                 <span>Budget: ${this.state.budget}.00</span>
+
                 <div className="movies">
                     {this.hasRented() ? this.getRentedSection() : null}
-                    <p>Catalog:</p>
-                    <div className="display all">
-                        {this.getDisplayMovies().map(m => { return this.getMovieDisplay(m) })}
-                    </div>
+                    <AllMovies movies={this.getDisplayMovies()} getMovieDisplay={this.getMovieDisplay} />
                 </div>
+
             </div>
         );
     }
