@@ -72,7 +72,7 @@ class Catalog extends Component {
         return (
             <div className="catalog">
                 <input value={this.props.searchInput} onChange={this.handleInput} className="search" placeholder="Search" />
-                <span>Budget: ${this.state.budget}.00</span>
+                <span id="budget">Budget: ${this.state.budget}.00</span>
 
                 <div className="movies">
                     {this.hasRented() ? this.getRentedSection() : null}
